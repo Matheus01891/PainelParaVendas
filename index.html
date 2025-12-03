@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Gestão FiveM | Solução Universal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS --- */
+        :root { --primary: #8a2be2; --primary-glow: rgba(138, 43, 226, 0.4); --secondary: #00ff9d; --dark: #050505; --card: #101010; --text: #fff; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+        
+        /* --- HERO (IGUAL AO SEU PRINT) --- */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(138,43,226,0.15), transparent 60%);
+            padding: 20px;
+        }
+        h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; line-height: 1.1; max-width: 900px; font-weight: 900; }
+        h1 span { color: var(--primary); text-shadow: 0 0 20px var(--primary); }
+        p.sub { font-size: 1.1rem; color: #aaa; max-width: 600px; margin-bottom: 30px; }
+        
+        .btn-cta {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--primary), #6a1b9a);
+            color: white;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 0 30px rgba(138,43,226,0.3);
+            transition: 0.3s;
+            border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-cta:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(138,43,226,0.6); filter: brightness(1.2); }
+
+        /* --- FEATURES (OS QUADRADINHOS DO PRINT) --- */
+        .features { padding: 60px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .feature-card {
+            background: var(--card); border: 1px solid #222; padding: 25px; width: 280px; border-radius: 15px;
+            transition: 0.3s; text-align: left;
+        }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 5px 20px -10px var(--primary-glow); }
+        .feature-card i { font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; }
+        .feature-card h3 { font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
+        .feature-card p { color: #aaa; font-size: 0.9rem; line-height: 1.5; margin: 0; }
+
+        /* --- ÁREA DO SIMULADOR --- */
+        .demo-section { background: #080808; padding: 60px 20px; text-align: center; border-top: 1px solid #222; }
+        .demo-container {
+            background: #141414; border: 1px solid var(--primary); border-radius: 20px; max-width: 450px; margin: 30px auto; padding: 30px;
+            position: relative; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8);
+        }
+        .demo-tag { position: absolute; top: -12px; right: 20px; background: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 900; letter-spacing: 1px; }
+
+        /* INPUTS BONITOS E NÍTIDOS (MANTIDO DO PEDIDO ANTERIOR) */
+        .input-label { display: block; text-align: left; font-size: 0.9rem; color: #e0e0e0; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px; }
+        
+        .sim-input {
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 10px;
+            font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500;
+            transition: all 0.3s ease; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+            appearance: none;
+        }
+        .sim-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); background: #202020; }
+        
+        .select-wrapper { position: relative; }
+        .select-wrapper::after {
+            content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 15px; top: 40%; transform: translateY(-50%); color: var(--primary); pointer-events: none;
+        }
+
+        .sim-btn {
+            width: 100%; padding: 15px; background: #222; color: #ccc; border: 1px solid #333; cursor: pointer; border-radius: 10px; font-weight: 700; margin-top: 5px; transition: 0.3s; font-size: 1rem;
+        }
+        .sim-btn:hover { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+
+        /* --- CATEGORY BUTTONS --- */
+        .category-switch { display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; }
+        .cat-btn {
+            background: #222; border: 1px solid #333; color: #888; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 8px;
+        }
+        .cat-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+        .cat-btn:hover:not(.active) { background: #333; color: white; }
+
+        /* --- O DISCORD FAKE (FUNCIONALIDADE NOVA, VISUAL DISCRETO) --- */
+        .discord-mockup {
+            background: #36393f; border-radius: 8px; margin-top: 25px; padding: 15px; text-align: left; display: none; animation: slideUp 0.5s ease; border-left: 4px solid #202225;
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .discord-user { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .discord-avatar { width: 35px; height: 35px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; }
+        .discord-name { color: white; font-weight: bold; font-size: 0.9rem; }
+        .discord-bot-tag { background: #5865f2; color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; }
+        
+        .discord-embed { background: #2f3136; border-left: 4px solid var(--primary); padding: 10px; border-radius: 4px; max-width: 95%; }
+        .embed-desc { color: #dcddde; font-size: 0.85rem; line-height: 1.4; white-space: pre-line; }
+
+        .config-notice {
+            background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); color: #ffc107; padding: 12px; font-size: 0.85rem; margin-bottom: 20px; border-radius: 8px; text-align: left; display: flex; align-items: center; gap: 12px; font-weight: 600;
+        }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+        .faq-item { background: #111; border: 1px solid #222; padding: 20px; margin-bottom: 15px; border-radius: 10px; }
+        .faq-item h4 { margin: 0 0 10px 0; color: var(--primary); }
+        .faq-item p { margin: 0; color: #888; font-size: 0.9rem; line-height: 1.5; }
+
+        footer { padding: 40px; text-align: center; color: #444; font-size: 0.9rem; border-top: 1px solid #1a1a1a; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div style="margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 2px; color: var(--primary); font-weight: 700;">SISTEMA DE GESTÃO FIVEM</div>
+        <h1>Organize sua Facção de<br><span>Qualquer Tipo</span></h1>
+        <p class="sub">Seja Muamba, Armas, Munição, Drogas ou Desmanche. Tenha um painel profissional que calcula lucros e envia relatórios automáticos no Discord.</p>
+        <button class="btn-cta" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})">
+            <i class="fa-solid fa-flask"></i> TESTAR O SISTEMA
+        </button>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <i class="fa-solid fa-sliders"></i>
+            <h3>100% Editável</h3>
+            <p>Os nomes dos itens e preços são configuráveis. Se sua cidade chama "Cocaína" de "Farinha", você muda em 1 minuto.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-brands fa-discord"></i>
+            <h3>Logs Automáticas</h3>
+            <p>Acabou a mentira. O membro registra o farm no site e o aviso cai na hora no canal do Discord da facção.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Múltiplos Tipos</h3>
+            <p>Funciona para Desmanche, Tráfico, Lavagem de Dinheiro ou venda de Itens Ilegais (Muamba).</p>
+        </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+        <h2 style="font-size: 2rem; margin-bottom: 10px; font-weight: 800;">Teste na Prática</h2>
+        <p style="color: #666; margin-bottom: 40px; font-weight: 600;">Selecione o estilo da sua facção abaixo para ver como o sistema se adapta:</p>
+
+        <div class="demo-container">
+            <div class="demo-tag">DEMO V9.0</div>
+            
+            <div class="config-notice">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <div><strong>Atenção Líder:</strong> Isso é uma demonstração. Na versão final, VOCÊ edita os nomes e preços.</div>
+            </div>
+
+            <div class="category-switch">
+                <button class="cat-btn active" onclick="setMode('drogas', this)"><i class="fa-solid fa-pills"></i> Drogas</button>
+                <button class="cat-btn" onclick="setMode('armas', this)"><i class="fa-solid fa-gun"></i> Armas</button>
+                <button class="cat-btn" onclick="setMode('muamba', this)"><i class="fa-solid fa-box-open"></i> Muamba</button>
+            </div>
+
+            <h3 id="panelTitle" style="margin: 0 0 20px 0; color: var(--primary); text-align: left; font-weight: 800;">Calculadora de Tráfico</h3>
+            
+            <label class="input-label">Item:</label>
+            <div class="select-wrapper">
+                <select class="sim-input" id="demoType">
+                    </select>
+            </div>
+
+            <label class="input-label">Quantidade / Valor:</label>
+            <input type="number" class="sim-input" id="demoQtd" placeholder="Ex: 100">
+
+            <button class="sim-btn" onclick="gerarPreview()"><i class="fa-brands fa-discord"></i> GERAR LOG NO DISCORD</button>
+
+            <div id="discordPreview" class="discord-mockup">
+                <div class="discord-user">
+                    <div class="discord-avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div>
+                        <span class="discord-name">Sistema Madrid</span>
+                        <span class="discord-bot-tag">BOT</span>
+                    </div>
+                </div>
+                <div class="discord-embed">
+                    <div class="embed-desc" id="embedContent">Carregando...</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 80px;">
+            <a href="SEU_LINK_DO_DISCORD_OU_WHATSAPP" class="btn-cta" style="background: #25D366; padding: 20px 60px; font-size: 1.4rem; box-shadow: 0 0 40px rgba(37, 211, 102, 0.3);">
+                <i class="fa-brands fa-whatsapp"></i> COMPRAR CÓDIGO (R$ 10,00)
+            </a>
+            <p style="color: #666; margin-top: 20px; font-weight: 600;">Entrega Imediata • Tutorial Incluso</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2 style="text-align: center; margin-bottom: 40px;">Dúvidas Comuns</h2>
+        <div class="faq-item">
+            <h4>Preciso saber programar?</h4>
+            <p>Não! O sistema já vai pronto. Você só precisa editar um arquivo de texto simples para mudar os nomes e preços.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Tem mensalidade?</h4>
+            <p>Não. Você paga R$ 10,00 uma vez e o código é seu para sempre.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Desenvolvido por <strong>Theus Dev</strong> - Soluções FiveM</p>
+    </footer>
+
+    <script>
+        const configs = {
+            drogas: { title: "Calculadora de Tráfico", items: [{name:"Maconha (Un)", price:500}, {name:"Cristal (Uso)", price:2000}, {name:"Cocaina (Pino)", price:800}] },
+            armas: { title: "Calculadora Bélica", items: [{name:"Munição AK (Cx)", price:5000}, {name:"Munição Glock (Cx)", price:2500}, {name:"Peças (Metal)", price:300}] },
+            muamba: { title: "Calculadora Muamba", items: [{name:"Ventilador", price:1500}, {name:"TV LED", price:3500}, {name:"Colar Ouro", price:5000}] }
+        };
+
+        function setMode(mode, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const config = configs[mode];
+            document.getElementById('panelTitle').innerText = config.title;
+            const select = document.getElementById('demoType');
+            select.innerHTML = "";
+            config.items.forEach(i => {
+                let opt = document.createElement('option');
+                opt.value = i.price;
+                opt.text = `${i.name} - R$ ${i.price}`;
+                select.appendChild(opt);
+            });
+            document.getElementById('discordPreview').style.display = 'none';
+        }
+
+        function gerarPreview() {
+            const select = document.getElementById('demoType');
+            const item = select.options[select.selectedIndex].text.split(' -')[0];
+            const preco = parseFloat(select.value);
+            const qtd = parseFloat(document.getElementById('demoQtd').value);
+
+            if(!qtd) return alert("Coloque a quantidade!");
+
+            const total = preco * qtd;
+            const taxa = total * 0.20;
+            const lucro = total - taxa;
+            const f = (v) => v.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+            const texto = `👤 **Membro:** Teste (Visitante)\n📦 **Item:** ${item}\n🔢 **Qtd:** ${qtd}\n💰 **Total:** ${f(total)}\n📉 **Taxa Fac:** ${f(taxa)}\n✅ **Lucro:** ${f(lucro)}`;
+
+            document.getElementById('embedContent').innerText = texto;
+            const preview = document.getElementById('discordPreview');
+            preview.style.display = 'none';
+            setTimeout(() => preview.style.display = 'block', 100);
+        }
+
+        window.onload = function() { setMode('drogas', document.querySelector('.cat-btn')); }
+    </script>
+</body>
+</html>
