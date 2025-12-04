@@ -37,6 +37,28 @@
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             background: radial-gradient(circle at center, rgba(138,43,226,0.15) 0%, transparent 70%); padding: 20px;
         }
+        
+        /* LOGO AVATAR REDONDO NO TOPO */
+        .top-logo-container {
+            margin-bottom: 30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 40px var(--primary-glow);
+            animation: float 4s ease-in-out infinite;
+        }
+        .top-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
         h1 { font-size: 3rem; margin-bottom: 15px; text-transform: uppercase; line-height: 1.1; max-width: 900px; font-weight: 900; }
         h1 span { color: var(--primary); text-shadow: 0 0 40px var(--primary); transition: 0.3s; }
         p.sub { font-size: 1.2rem; color: #aaa; max-width: 600px; margin-bottom: 40px; }
@@ -47,12 +69,20 @@
         }
         .btn-cta:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--primary-glow); filter: brightness(1.2); }
 
-        /* GIF / BANNER ANIMADO */
-        .gif-container {
-            margin-top: 60px; border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
-            box-shadow: 0 20px 60px -10px var(--primary-glow); max-width: 800px; width: 100%;
+        /* PLACEHOLDER DO VÍDEO */
+        .video-placeholder {
+            margin-top: 60px; border: 2px solid #333; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 60px -10px rgba(0,0,0,0.5); max-width: 800px; width: 100%; aspect-ratio: 16/9;
+            background: #111; display: flex; justify-content: center; align-items: center; flex-direction: column;
+            color: #555; font-weight: bold;
         }
-        .gif-container img { width: 100%; display: block; }
+        .video-placeholder i { font-size: 4rem; margin-bottom: 20px; color: #333; }
+
+        /* BANNER ANIMADO NO FINAL */
+        .footer-banner {
+            margin-top: 40px; border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 60px -10px var(--primary-glow); max-width: 700px; width: 100%; margin-left: auto; margin-right: auto; display: block;
+        }
 
         /* FEATURES */
         .features { padding: 80px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
@@ -212,13 +242,17 @@
     </a>
 
     <section class="hero reveal active">
-        <div style="margin-bottom: 25px; font-size: 0.9rem; letter-spacing: 3px; color: var(--primary); font-weight: 700;">THEUS SYSTEMS</div>
+        <div class="top-logo-container reveal">
+            <img src="https://i.postimg.cc/bvHmRp0J/Foto-Redonda.jpg" alt="Theus Systems Logo">
+        </div>
+
         <h1>Organize sua Facção de<br><span>Qualquer Tipo</span></h1>
         <p class="sub">Seja Muamba, Armas, Munição, Drogas ou Desmanche. Tenha um painel profissional que calcula lucros e envia relatórios automáticos no Discord.</p>
         <button class="btn-cta" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})"><i class="fa-solid fa-flask"></i> TESTAR O SISTEMA</button>
         
-        <div class="gif-container reveal">
-            <img src="https://i.postimg.cc/J4zCDdLs/Banner-Animado.gif" alt="Demonstração Theus Systems">
+        <div class="video-placeholder reveal">
+            <i class="fa-brands fa-youtube"></i>
+            <span>VÍDEO DE APRESENTAÇÃO EM BREVE</span>
         </div>
     </section>
 
@@ -349,6 +383,8 @@
                 <i class="fa-brands fa-discord"></i> ENTRAR NA LOJA (DISCORD)
             </a>
             
+            <img src="https://i.postimg.cc/J4zCDdLs/Banner-Animado.gif" alt="Demonstração Theus Systems" class="footer-banner reveal">
+
             <br>
             <img src="https://i.postimg.cc/YSnXvk10/banner-dos-cartoes.jpg" alt="Aceitamos PIX, Cartão e Boleto" class="payment-banner reveal">
 
