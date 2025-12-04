@@ -462,4 +462,97 @@
         const configs = {
             drogas: { title: "Calculadora de Tráfico", items: [{name:"Maconha (Un)", price:500}, {name:"Cristal (Uso)", price:2000}, {name:"Cocaina (Pino)", price:800}] },
             armas: { title: "Calculadora de Armas", items: [{name:"Glock (Peças)", price:15000}, {name:"AK-47 (Peças)", price:45000}, {name:"Five Seven (Pronta)", price:80000}] },
-            municoes: { title: "Calculadora de Munições", items: [{name:"Munição Glock (Caixa)", price:2500},
+            municoes: { title: "Calculadora de Munições", items: [{name:"Munição Glock (Caixa)", price:2500}, {name:"Munição AK (Caixa)", price:5000}, {name:"Munição SMG (Caixa)", price:3000}] },
+            muamba: { title: "Calculadora Muamba", items: [{name:"Rádio Comunicador", price:1500}, {name:"Celular", price:3500}, {name:"Mochila", price:5000}] },
+            desmanche: { title: "Calculadora Desmanche", items: [] } 
+        };
+
+        let currentMode = 'drogas';
+
+        function switchView(view, btn) {
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if(view === 'member') {
+                document.getElementById('member-area').classList.remove('hidden');
+                document.getElementById('admin-area').classList.add('hidden');
+            } else {
+                document.getElementById('member-area').classList.add('hidden');
+                document.getElementById('admin-area').classList.remove('hidden');
+                closeFolder(); // Reseta para lista de pastas
+            }
+        }
+
+        // Função para simular abrir pasta (Admin)
+        function openFolder(name) {
+            document.getElementById('foldersGrid').style.display = 'none';
+            document.getElementById('logList').style.display = 'block';
+            document.getElementById('folderTitle').innerText = name;
+            
+            // Gera dados falsos para demonstração
+            const logsDiv = document.getElementById('logsContent');
+            logsDiv.innerHTML = `
+                <div class="log-item"><span>📅 04/12 - Maconha (100un)</span><span style="color:#00ff9d">+ R$ 40.000</span></div>
+                <div class="log-item"><span>📅 03/12 - Glock (2un)</span><span style="color:#00ff9d">+ R$ 24.000</span></div>
+                <div class="log-item"><span>📅 01/12 - Munição AK (5cx)</span><span style="color:#00ff9d">+ R$ 20.000</span></div>
+            `;
+        }
+
+        function closeFolder() {
+            document.getElementById('foldersGrid').style.display = 'grid';
+            document.getElementById('logList').style.display = 'none';
+        }
+
+        function setMode(mode, btn) {
+            currentMode = mode;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const config = configs[mode];
+            document.getElementById('panelTitle').innerText = config.title;
+            const stdForm = document.getElementById('form-standard');
+            const chopForm = document.getElementById('form-desmanche');
+            if (mode === 'desmanche') { stdForm.classList.add('hidden'); chopForm.classList.remove('hidden'); } 
+            else { 
+                chopForm.classList.add('hidden'); stdForm.classList.remove('hidden'); 
+                const select = document.getElementById('demoType');
+                select.innerHTML = "";
+                config.items.forEach(i => {
+                    let opt = document.createElement('option');
+                    opt.value = i.price; opt.text = `${i.name} - R$ ${i.price}`;
+                    select.appendChild(opt);
+                });
+            }
+            document.getElementById('discordPreview').style.display = 'none';
+        }
+
+        function gerarPreview() {
+            const f = (v) => v.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            let texto = "";
+            if (currentMode === 'desmanche') {
+                const car = document.getElementById('chopCar').value || "Não informado";
+                const valTotal = parseFloat(document.getElementById('chopValue').value);
+                const rate = parseFloat(document.getElementById('chopRate').value);
+                if(!valTotal) return alert("Digite o Valor Total!");
+                const facCut = valTotal * (rate / 100);
+                const memberCut = valTotal - facCut;
+                texto = `👤 **Membro:** Teste (Visitante)\n🚗 **Veículo:** ${car}\n💵 **Valor Total:** ${f(valTotal)}\n📉 **Taxa Fac:** ${f(facCut)} (${rate}%)\n✅ **Lucro:** ${f(memberCut)}`;
+            } else {
+                const select = document.getElementById('demoType');
+                const item = select.options[select.selectedIndex].text.split(' -')[0];
+                const preco = parseFloat(select.value);
+                const qtd = parseFloat(document.getElementById('demoQtd').value);
+                if(!qtd) return alert("Coloque a quantidade!");
+                const total = preco * qtd;
+                const taxa = total * 0.20;
+                const lucro = total - taxa;
+                texto = `👤 **Membro:** Teste (Visitante)\n📦 **Item:** ${item}\n🔢 **Qtd:** ${qtd}\n💰 **Total:** ${f(total)}\n📉 **Taxa Fac:** ${f(taxa)}\n✅ **Lucro:** ${f(lucro)}`;
+            }
+            document.getElementById('embedContent').innerText = texto;
+            const preview = document.getElementById('discordPreview');
+            preview.style.display = 'none';
+            setTimeout(() => preview.style.display = 'block', 100);
+        }
+
+        window.onload = function() { setMode('drogas', document.querySelector('.cat-btn')); }
+    </script>
+</body>
+</html>
