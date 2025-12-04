@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Gestão FiveM | Solução Universal</title>
+    <title>Theus Systems | Soluções para Facções</title>
+    
+    <meta property="og:title" content="Theus Systems - Gestão Inteligente">
+    <meta property="og:description" content="Automatize sua facção com o melhor sistema do mercado. Entregas automáticas e painéis exclusivos.">
+    <meta property="og:image" content="https://i.postimg.cc/9MDLTSpn/Banner.jpg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#8a2be2">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
     <style>
@@ -40,7 +47,7 @@
         }
         .btn-cta:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--primary-glow); filter: brightness(1.2); }
 
-        /* GIF */
+        /* GIF / BANNER ANIMADO */
         .gif-container {
             margin-top: 60px; border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
             box-shadow: 0 20px 60px -10px var(--primary-glow); max-width: 800px; width: 100%;
@@ -136,11 +143,18 @@
         }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .discord-user { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .discord-avatar { width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; transition: 0.3s; }
+        .discord-avatar { width: 40px; height: 40px; background: transparent; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: 0.3s; }
+        .discord-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .discord-name { color: white; font-weight: bold; font-size: 1rem; }
         .discord-bot-tag { background: #5865f2; color: white; font-size: 0.7rem; padding: 3px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
         .discord-embed { background: #2f3136; border-left: 4px solid var(--primary); padding: 15px; border-radius: 6px; max-width: 95%; transition: 0.3s; }
         .embed-desc { color: #dcddde; font-size: 0.9rem; line-height: 1.5; white-space: pre-line; }
+
+        /* BANNER DE PAGAMENTO */
+        .payment-banner {
+            width: 100%; max-width: 600px; border-radius: 15px; margin-top: 30px; 
+            border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
 
         /* ROADMAP & FAQ */
         .roadmap-section { padding: 80px 20px; text-align: center; }
@@ -198,12 +212,13 @@
     </a>
 
     <section class="hero reveal active">
-        <div style="margin-bottom: 25px; font-size: 0.9rem; letter-spacing: 3px; color: var(--primary); font-weight: 700;">SISTEMA DE GESTÃO FIVEM</div>
+        <div style="margin-bottom: 25px; font-size: 0.9rem; letter-spacing: 3px; color: var(--primary); font-weight: 700;">THEUS SYSTEMS</div>
         <h1>Organize sua Facção de<br><span>Qualquer Tipo</span></h1>
         <p class="sub">Seja Muamba, Armas, Munição, Drogas ou Desmanche. Tenha um painel profissional que calcula lucros e envia relatórios automáticos no Discord.</p>
         <button class="btn-cta" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})"><i class="fa-solid fa-flask"></i> TESTAR O SISTEMA</button>
+        
         <div class="gif-container reveal">
-            <img src="https://placehold.co/800x400/151515/8a2be2?text=GIF+DE+FUNCIONAMENTO+AQUI" alt="Demonstração">
+            <img src="https://i.postimg.cc/J4zCDdLs/Banner-Animado.gif" alt="Demonstração Theus Systems">
         </div>
     </section>
 
@@ -287,8 +302,10 @@
 
                 <div id="discordPreview" class="discord-mockup">
                     <div class="discord-user">
-                        <div class="discord-avatar"><i class="fa-solid fa-robot"></i></div>
-                        <div><span class="discord-name">Nome da Sua Facção</span><span class="discord-bot-tag">BOT</span></div>
+                        <div class="discord-avatar">
+                            <img src="https://i.postimg.cc/bvHmRp0J/Foto-Redonda.jpg" alt="TS Bot">
+                        </div>
+                        <div><span class="discord-name">Theus Systems</span><span class="discord-bot-tag">BOT</span></div>
                     </div>
                     <div class="discord-embed"><div class="embed-desc" id="embedContent">Carregando...</div></div>
                 </div>
@@ -331,6 +348,10 @@
             <a href="SEU_LINK_DO_DISCORD_OU_WHATSAPP" class="btn-cta" style="background: #5865F2; padding: 25px 80px; font-size: 1.5rem; box-shadow: 0 0 50px rgba(88, 101, 242, 0.3);">
                 <i class="fa-brands fa-discord"></i> ENTRAR NA LOJA (DISCORD)
             </a>
+            
+            <br>
+            <img src="https://i.postimg.cc/YSnXvk10/banner-dos-cartoes.jpg" alt="Aceitamos PIX, Cartão e Boleto" class="payment-banner reveal">
+
             <p style="color: #666; margin-top: 25px; font-weight: 600; font-size: 1rem;">Entrega Imediata • Tutorial Incluso</p>
             <p style="color: #25D366; font-size: 0.9rem; margin-top: 10px;"><i class="fa-solid fa-gift"></i> BÔNUS: Pack de 50 Ícones de Itens Grátis</p>
         </div>
@@ -364,7 +385,7 @@
         </div>
     </section>
 
-    <footer><p>Desenvolvido por <strong>Theus Dev</strong> - Soluções FiveM</p></footer>
+    <footer><p>Desenvolvido por <strong>Theus Systems</strong> - Soluções FiveM</p></footer>
 
     <script>
         // === SCRIPT DE ANIMAÇÃO SCROLL ===
@@ -441,97 +462,4 @@
         const configs = {
             drogas: { title: "Calculadora de Tráfico", items: [{name:"Maconha (Un)", price:500}, {name:"Cristal (Uso)", price:2000}, {name:"Cocaina (Pino)", price:800}] },
             armas: { title: "Calculadora de Armas", items: [{name:"Glock (Peças)", price:15000}, {name:"AK-47 (Peças)", price:45000}, {name:"Five Seven (Pronta)", price:80000}] },
-            municoes: { title: "Calculadora de Munições", items: [{name:"Munição Glock (Caixa)", price:2500}, {name:"Munição AK (Caixa)", price:5000}, {name:"Munição SMG (Caixa)", price:3000}] },
-            muamba: { title: "Calculadora Muamba", items: [{name:"Rádio Comunicador", price:1500}, {name:"Celular", price:3500}, {name:"Mochila", price:5000}] },
-            desmanche: { title: "Calculadora Desmanche", items: [] } 
-        };
-
-        let currentMode = 'drogas';
-
-        function switchView(view, btn) {
-            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if(view === 'member') {
-                document.getElementById('member-area').classList.remove('hidden');
-                document.getElementById('admin-area').classList.add('hidden');
-            } else {
-                document.getElementById('member-area').classList.add('hidden');
-                document.getElementById('admin-area').classList.remove('hidden');
-                closeFolder(); // Reseta para lista de pastas
-            }
-        }
-
-        // Função para simular abrir pasta (Admin)
-        function openFolder(name) {
-            document.getElementById('foldersGrid').style.display = 'none';
-            document.getElementById('logList').style.display = 'block';
-            document.getElementById('folderTitle').innerText = name;
-            
-            // Gera dados falsos para demonstração
-            const logsDiv = document.getElementById('logsContent');
-            logsDiv.innerHTML = `
-                <div class="log-item"><span>📅 04/12 - Maconha (100un)</span><span style="color:#00ff9d">+ R$ 40.000</span></div>
-                <div class="log-item"><span>📅 03/12 - Glock (2un)</span><span style="color:#00ff9d">+ R$ 24.000</span></div>
-                <div class="log-item"><span>📅 01/12 - Munição AK (5cx)</span><span style="color:#00ff9d">+ R$ 20.000</span></div>
-            `;
-        }
-
-        function closeFolder() {
-            document.getElementById('foldersGrid').style.display = 'grid';
-            document.getElementById('logList').style.display = 'none';
-        }
-
-        function setMode(mode, btn) {
-            currentMode = mode;
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const config = configs[mode];
-            document.getElementById('panelTitle').innerText = config.title;
-            const stdForm = document.getElementById('form-standard');
-            const chopForm = document.getElementById('form-desmanche');
-            if (mode === 'desmanche') { stdForm.classList.add('hidden'); chopForm.classList.remove('hidden'); } 
-            else { 
-                chopForm.classList.add('hidden'); stdForm.classList.remove('hidden'); 
-                const select = document.getElementById('demoType');
-                select.innerHTML = "";
-                config.items.forEach(i => {
-                    let opt = document.createElement('option');
-                    opt.value = i.price; opt.text = `${i.name} - R$ ${i.price}`;
-                    select.appendChild(opt);
-                });
-            }
-            document.getElementById('discordPreview').style.display = 'none';
-        }
-
-        function gerarPreview() {
-            const f = (v) => v.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-            let texto = "";
-            if (currentMode === 'desmanche') {
-                const car = document.getElementById('chopCar').value || "Não informado";
-                const valTotal = parseFloat(document.getElementById('chopValue').value);
-                const rate = parseFloat(document.getElementById('chopRate').value);
-                if(!valTotal) return alert("Digite o Valor Total!");
-                const facCut = valTotal * (rate / 100);
-                const memberCut = valTotal - facCut;
-                texto = `👤 **Membro:** Teste (Visitante)\n🚗 **Veículo:** ${car}\n💵 **Valor Total:** ${f(valTotal)}\n📉 **Taxa Fac:** ${f(facCut)} (${rate}%)\n✅ **Lucro:** ${f(memberCut)}`;
-            } else {
-                const select = document.getElementById('demoType');
-                const item = select.options[select.selectedIndex].text.split(' -')[0];
-                const preco = parseFloat(select.value);
-                const qtd = parseFloat(document.getElementById('demoQtd').value);
-                if(!qtd) return alert("Coloque a quantidade!");
-                const total = preco * qtd;
-                const taxa = total * 0.20;
-                const lucro = total - taxa;
-                texto = `👤 **Membro:** Teste (Visitante)\n📦 **Item:** ${item}\n🔢 **Qtd:** ${qtd}\n💰 **Total:** ${f(total)}\n📉 **Taxa Fac:** ${f(taxa)}\n✅ **Lucro:** ${f(lucro)}`;
-            }
-            document.getElementById('embedContent').innerText = texto;
-            const preview = document.getElementById('discordPreview');
-            preview.style.display = 'none';
-            setTimeout(() => preview.style.display = 'block', 100);
-        }
-
-        window.onload = function() { setMode('drogas', document.querySelector('.cat-btn')); }
-    </script>
-</body>
-</html>
+            municoes: { title: "Calculadora de Munições", items: [{name:"Munição Glock (Caixa)", price:2500},
