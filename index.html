@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Gestão FiveM | Solução Universal</title>
+    <title>Theus Systems | Soluções para Facções</title>
+    
+    <meta property="og:title" content="Theus Systems - Gestão Inteligente">
+    <meta property="og:description" content="Automatize sua facção com o melhor sistema do mercado. Entregas automáticas e painéis exclusivos.">
+    <meta property="og:image" content="https://i.postimg.cc/9MDLTSpn/Banner.jpg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#8a2be2">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
     <style>
@@ -30,6 +37,28 @@
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             background: radial-gradient(circle at center, rgba(138,43,226,0.15) 0%, transparent 70%); padding: 20px;
         }
+        
+        /* LOGO AVATAR REDONDO NO TOPO */
+        .top-logo-container {
+            margin-bottom: 30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 40px var(--primary-glow);
+            animation: float 4s ease-in-out infinite;
+        }
+        .top-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
         h1 { font-size: 3rem; margin-bottom: 15px; text-transform: uppercase; line-height: 1.1; max-width: 900px; font-weight: 900; }
         h1 span { color: var(--primary); text-shadow: 0 0 40px var(--primary); transition: 0.3s; }
         p.sub { font-size: 1.2rem; color: #aaa; max-width: 600px; margin-bottom: 40px; }
@@ -40,12 +69,18 @@
         }
         .btn-cta:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--primary-glow); filter: brightness(1.2); }
 
-        /* VIDEO CONTAINER (Reutilizando estilo do GIF para manter o Banner) */
-        .gif-container {
+        /* VIDEO CONTAINER REAL */
+        .video-container {
             margin-top: 60px; border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
             box-shadow: 0 20px 60px -10px var(--primary-glow); max-width: 800px; width: 100%; background: #000;
         }
         video { width: 100%; display: block; }
+
+        /* BANNER ANIMADO NO FINAL */
+        .footer-banner {
+            margin-top: 40px; border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 60px -10px var(--primary-glow); max-width: 700px; width: 100%; margin-left: auto; margin-right: auto; display: block;
+        }
 
         /* FEATURES */
         .features { padding: 80px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
@@ -59,21 +94,21 @@
 
         /* DEPOIMENTOS */
         .testimonials-section { padding: 80px 20px; text-align: center; background: #080808; }
-        
-        /* Stats Bar para Média (Novo - Visual Minimalista) */
-        .stats-bar { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 40px; color: #777; font-size: 0.9rem; }
-        .stars-avg { color: #feca57; letter-spacing: 2px; }
-
         .testimonials-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px; }
         .testi-card {
             background: #151515; border-left: 4px solid var(--primary); padding: 25px; width: 100%; max-width: 320px; border-radius: 12px; text-align: left; transition: 0.3s;
         }
+        .testi-card:hover { transform: translateY(-5px); background: #1a1a1a; }
         .testi-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .testi-avatar { width: 45px; height: 45px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; overflow: hidden; color:white; }
+        .testi-avatar { width: 45px; height: 45px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; overflow: hidden; color: white;}
         .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .testi-name { font-weight: bold; color: white; font-size: 0.95rem; }
         .testi-role { font-size: 0.75rem; color: #777; }
         .testi-text { color: #ccc; font-size: 0.95rem; line-height: 1.5; font-style: italic; }
+
+        /* STATS BAR (NOVO) */
+        .stats-bar { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px; color: #777; font-size: 0.9rem; }
+        .stars-avg { color: #feca57; letter-spacing: 2px; }
 
         /* DEMO */
         .demo-section { background: #0a0a0a; padding: 80px 20px; text-align: center; border-top: 1px solid #222; }
@@ -141,11 +176,18 @@
         }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .discord-user { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .discord-avatar { width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; transition: 0.3s; }
+        .discord-avatar { width: 40px; height: 40px; background: transparent; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: 0.3s; }
+        .discord-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .discord-name { color: white; font-weight: bold; font-size: 1rem; }
         .discord-bot-tag { background: #5865f2; color: white; font-size: 0.7rem; padding: 3px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
         .discord-embed { background: #2f3136; border-left: 4px solid var(--primary); padding: 15px; border-radius: 6px; max-width: 95%; transition: 0.3s; }
         .embed-desc { color: #dcddde; font-size: 0.9rem; line-height: 1.5; white-space: pre-line; }
+
+        /* BANNER DE PAGAMENTO */
+        .payment-banner {
+            width: 100%; max-width: 600px; border-radius: 15px; margin-top: 30px; 
+            border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
 
         /* ROADMAP & FAQ */
         .roadmap-section { padding: 80px 20px; text-align: center; }
@@ -203,12 +245,15 @@
     </a>
 
     <section class="hero reveal active">
-        <div style="margin-bottom: 25px; font-size: 0.9rem; letter-spacing: 3px; color: var(--primary); font-weight: 700;">SISTEMA DE GESTÃO FIVEM</div>
+        <div class="top-logo-container reveal">
+            <img src="https://i.postimg.cc/bvHmRp0J/Foto-Redonda.jpg" alt="Theus Systems Logo">
+        </div>
+
         <h1>Organize sua Facção de<br><span>Qualquer Tipo</span></h1>
         <p class="sub">Seja Muamba, Armas, Munição, Drogas ou Desmanche. Tenha um painel profissional que calcula lucros e envia relatórios automáticos no Discord.</p>
         <button class="btn-cta" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})"><i class="fa-solid fa-flask"></i> TESTAR O SISTEMA</button>
         
-        <div class="gif-container reveal">
+        <div class="video-container reveal">
             <video controls autoplay muted loop>
                 <source src="video.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
@@ -224,7 +269,7 @@
 
     <section class="testimonials-section reveal">
         <h2 style="font-size: 2.5rem; margin-bottom: 5px;">Quem usa, aprova</h2>
-        <p style="color:#666; font-size: 1.2rem;">Líderes de diversas cidades já organizaram suas facções.</p>
+        <p style="color:#666; font-size: 1.1rem; margin-bottom: 30px;">Líderes de diversas cidades já organizaram suas facções.</p>
         
         <div class="stats-bar">
             <div><span class="stars-avg" id="avgStars">★★★★★</span></div>
@@ -295,8 +340,10 @@
 
                 <div id="discordPreview" class="discord-mockup">
                     <div class="discord-user">
-                        <div class="discord-avatar"><i class="fa-solid fa-robot"></i></div>
-                        <div><span class="discord-name">Nome da Sua Facção</span><span class="discord-bot-tag">BOT</span></div>
+                        <div class="discord-avatar">
+                            <img src="https://i.postimg.cc/bvHmRp0J/Foto-Redonda.jpg" alt="TS Bot">
+                        </div>
+                        <div><span class="discord-name">Theus Systems</span><span class="discord-bot-tag">BOT</span></div>
                     </div>
                     <div class="discord-embed"><div class="embed-desc" id="embedContent">Carregando...</div></div>
                 </div>
@@ -339,6 +386,12 @@
             <a href="SEU_LINK_DO_DISCORD_OU_WHATSAPP" class="btn-cta" style="background: #5865F2; padding: 25px 80px; font-size: 1.5rem; box-shadow: 0 0 50px rgba(88, 101, 242, 0.3);">
                 <i class="fa-brands fa-discord"></i> ENTRAR NA LOJA (DISCORD)
             </a>
+            
+            <img src="https://i.postimg.cc/J4zCDdLs/Banner-Animado.gif" alt="Demonstração Theus Systems" class="footer-banner reveal">
+
+            <br>
+            <img src="https://i.postimg.cc/YSnXvk10/banner-dos-cartoes.jpg" alt="Aceitamos PIX, Cartão e Boleto" class="payment-banner reveal">
+
             <p style="color: #666; margin-top: 25px; font-weight: 600; font-size: 1rem;">Entrega Imediata • Tutorial Incluso</p>
             <p style="color: #25D366; font-size: 0.9rem; margin-top: 10px;"><i class="fa-solid fa-gift"></i> BÔNUS: Pack de 50 Ícones de Itens Grátis</p>
         </div>
@@ -372,7 +425,7 @@
         </div>
     </section>
 
-    <footer><p>Desenvolvido por <strong>Theus Dev</strong> - Soluções FiveM</p></footer>
+    <footer><p>Desenvolvido por <strong>Theus Systems</strong> - Soluções FiveM</p></footer>
 
     <script>
         // === SCRIPT DE ANIMAÇÃO SCROLL ===
@@ -381,7 +434,7 @@
         }, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // === PLAYER PRO (MÚSICA) ===
+        // === PLAYER PRO (AUTO-START INTELIGENTE) ===
         const audio = document.getElementById('bgMusic');
         const musicLabel = document.getElementById('musicLabel');
         const musicIcon = document.getElementById('musicIcon');
@@ -403,17 +456,24 @@
                 isPlaying = true;
             }
         }
+
         window.addEventListener('load', () => {
             const promise = audio.play();
-            if (promise !== undefined) promise.then(_ => updatePlayerUI(true)).catch(e => {
-                document.body.addEventListener('click', function s() { audio.play(); updatePlayerUI(true); document.body.removeEventListener('click', s); });
-            });
+            if (promise !== undefined) {
+                promise.then(_ => { updatePlayerUI(true); }).catch(error => {
+                    document.body.addEventListener('click', function startAudioOnFirstClick() {
+                        audio.play(); updatePlayerUI(true); document.body.removeEventListener('click', startAudioOnFirstClick);
+                    });
+                });
+            }
         });
-        function updatePlayerUI(p) { if(p) { isPlaying=true; musicLabel.innerText="Pausar Música"; musicIcon.classList.remove('fa-music'); musicIcon.classList.add('fa-pause'); } }
+
+        function updatePlayerUI(playing) {
+            if(playing) { isPlaying = true; musicLabel.innerText = "Pausar Música"; musicIcon.classList.remove('fa-music'); musicIcon.classList.add('fa-pause'); }
+        }
 
         // === SISTEMA DE FEEDBACKS (MANUAL - DATABASE FICTÍCIA) ===
         // EDITE AQUI OS COMENTÁRIOS DA ABA FEEDBACK
-        // O SITE VAI GERAR SOZINHO OS BANNERS DE FEEDBACK BASEADO NESTA LISTA
         const feedbackData = [
             { 
                 name: "Ramos", 
@@ -437,7 +497,7 @@
                 msg: "O suporte do Theus é diferencial, configurou rapidinho pra gente.", 
                 avatar: "🦁", 
                 stars: 5, 
-                isTop: false // <-- SE QUISER QUE ALGUÉM SAIA, MUDE PARA false
+                isTop: false 
             },
             { 
                 name: "Rebelde_RJ", 
@@ -479,13 +539,14 @@
             document.querySelectorAll('.testi-card').forEach(el => observer.observe(el));
         }
 
-        // === COR E LÓGICA DO PAINEL ===
-        function changeColor(c, b) {
-            document.documentElement.style.setProperty('--primary', c);
-            document.documentElement.style.setProperty('--primary-glow', c + '66');
+        // === COR E CONFIGURAÇÕES ===
+        function changeColor(color, btn) {
+            document.documentElement.style.setProperty('--primary', color);
+            document.documentElement.style.setProperty('--primary-glow', color + '66');
             document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-            b.classList.add('active');
+            btn.classList.add('active');
         }
+
         const configs = {
             drogas: { title: "Calculadora de Tráfico", items: [{name:"Maconha (Un)", price:500}, {name:"Cristal (Uso)", price:2000}, {name:"Cocaina (Pino)", price:800}] },
             armas: { title: "Calculadora de Armas", items: [{name:"Glock (Peças)", price:15000}, {name:"AK-47 (Peças)", price:45000}, {name:"Five Seven (Pronta)", price:80000}] },
@@ -493,22 +554,89 @@
             muamba: { title: "Calculadora Muamba", items: [{name:"Rádio Comunicador", price:1500}, {name:"Celular", price:3500}, {name:"Mochila", price:5000}] },
             desmanche: { title: "Calculadora Desmanche", items: [] } 
         };
+
         let currentMode = 'drogas';
-        function switchView(v, b) {
-            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active')); b.classList.add('active');
-            if(v==='member'){document.getElementById('member-area').classList.remove('hidden');document.getElementById('admin-area').classList.add('hidden');}
-            else{document.getElementById('member-area').classList.add('hidden');document.getElementById('admin-area').classList.remove('hidden');closeFolder();}
+
+        function switchView(view, btn) {
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if(view === 'member') {
+                document.getElementById('member-area').classList.remove('hidden');
+                document.getElementById('admin-area').classList.add('hidden');
+            } else {
+                document.getElementById('member-area').classList.add('hidden');
+                document.getElementById('admin-area').classList.remove('hidden');
+                closeFolder(); 
+            }
         }
-        function openFolder(n){document.getElementById('foldersGrid').style.display='none';document.getElementById('logList').style.display='block';document.getElementById('folderTitle').innerText=n;document.getElementById('logsContent').innerHTML=`<div class="log-item"><span>📅 04/12 - Maconha (100un)</span><span style="color:#00ff9d">+ R$ 40.000</span></div><div class="log-item"><span>📅 03/12 - Glock (2un)</span><span style="color:#00ff9d">+ R$ 24.000</span></div>`;}
-        function closeFolder(){document.getElementById('foldersGrid').style.display='grid';document.getElementById('logList').style.display='none';}
-        function setMode(m,b){currentMode=m;document.querySelectorAll('.cat-btn').forEach(btn=>btn.classList.remove('active'));b.classList.add('active');const c=configs[m];document.getElementById('panelTitle').innerText=c.title;const sf=document.getElementById('form-standard');const cf=document.getElementById('form-desmanche');if(m==='desmanche'){sf.classList.add('hidden');cf.classList.remove('hidden');}else{cf.classList.add('hidden');sf.classList.remove('hidden');const s=document.getElementById('demoType');s.innerHTML="";c.items.forEach(i=>{let o=document.createElement('option');o.value=i.price;o.text=`${i.name} - R$ ${i.price}`;s.appendChild(o);});}document.getElementById('discordPreview').style.display='none';}
-        function gerarPreview(){
-            const f=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});let t="";
-            if(currentMode==='desmanche'){const c=document.getElementById('chopCar').value||"N/A";const v=parseFloat(document.getElementById('chopValue').value);const r=parseFloat(document.getElementById('chopRate').value);if(!v)return alert("Valor?");const fc=v*(r/100);t=`👤 **Membro:** Teste\n🚗 **Veículo:** ${c}\n💵 **Total:** ${f(v)}\n📉 **Taxa:** ${f(fc)}`;}
-            else{const s=document.getElementById('demoType');const i=s.options[s.selectedIndex].text.split(' -')[0];const p=parseFloat(s.value);const q=parseFloat(document.getElementById('demoQtd').value);if(!q)return alert("Qtd?");const tot=p*q;const tax=tot*0.2;t=`👤 **Membro:** Teste\n📦 **Item:** ${i}\n🔢 **Qtd:** ${q}\n💰 **Total:** ${f(tot)}\n📉 **Taxa:** ${f(tax)}`;}
-            document.getElementById('embedContent').innerText=t;const p=document.getElementById('discordPreview');p.style.display='none';setTimeout(()=>p.style.display='block',100);
+
+        function openFolder(name) {
+            document.getElementById('foldersGrid').style.display = 'none';
+            document.getElementById('logList').style.display = 'block';
+            document.getElementById('folderTitle').innerText = name;
+            const logsDiv = document.getElementById('logsContent');
+            logsDiv.innerHTML = `<div class="log-item"><span>📅 04/12 - Maconha (100un)</span><span style="color:#00ff9d">+ R$ 40.000</span></div><div class="log-item"><span>📅 03/12 - Glock (2un)</span><span style="color:#00ff9d">+ R$ 24.000</span></div><div class="log-item"><span>📅 01/12 - Munição AK (5cx)</span><span style="color:#00ff9d">+ R$ 20.000</span></div>`;
         }
-        window.onload=function(){setMode('drogas',document.querySelector('.cat-btn')); renderFeedbacks();}
+
+        function closeFolder() {
+            document.getElementById('foldersGrid').style.display = 'grid';
+            document.getElementById('logList').style.display = 'none';
+        }
+
+        function setMode(mode, btn) {
+            currentMode = mode;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const config = configs[mode];
+            document.getElementById('panelTitle').innerText = config.title;
+            const stdForm = document.getElementById('form-standard');
+            const chopForm = document.getElementById('form-desmanche');
+            if (mode === 'desmanche') { stdForm.classList.add('hidden'); chopForm.classList.remove('hidden'); } 
+            else { 
+                chopForm.classList.add('hidden'); stdForm.classList.remove('hidden'); 
+                const select = document.getElementById('demoType');
+                select.innerHTML = "";
+                config.items.forEach(i => {
+                    let opt = document.createElement('option');
+                    opt.value = i.price; opt.text = `${i.name} - R$ ${i.price}`;
+                    select.appendChild(opt);
+                });
+            }
+            document.getElementById('discordPreview').style.display = 'none';
+        }
+
+        function gerarPreview() {
+            const f = (v) => v.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            let texto = "";
+            if (currentMode === 'desmanche') {
+                const car = document.getElementById('chopCar').value || "Não informado";
+                const valTotal = parseFloat(document.getElementById('chopValue').value);
+                const rate = parseFloat(document.getElementById('chopRate').value);
+                if(!valTotal) return alert("Digite o Valor Total!");
+                const facCut = valTotal * (rate / 100);
+                const memberCut = valTotal - facCut;
+                texto = `👤 **Membro:** Teste (Visitante)\n🚗 **Veículo:** ${car}\n💵 **Valor Total:** ${f(valTotal)}\n📉 **Taxa Fac:** ${f(facCut)} (${rate}%)\n✅ **Lucro:** ${f(memberCut)}`;
+            } else {
+                const select = document.getElementById('demoType');
+                const item = select.options[select.selectedIndex].text.split(' -')[0];
+                const preco = parseFloat(select.value);
+                const qtd = parseFloat(document.getElementById('demoQtd').value);
+                if(!qtd) return alert("Coloque a quantidade!");
+                const total = preco * qtd;
+                const taxa = total * 0.20;
+                const lucro = total - taxa;
+                texto = `👤 **Membro:** Teste (Visitante)\n📦 **Item:** ${item}\n🔢 **Qtd:** ${qtd}\n💰 **Total:** ${f(total)}\n📉 **Taxa Fac:** ${f(taxa)}\n✅ **Lucro:** ${f(lucro)}`;
+            }
+            document.getElementById('embedContent').innerText = texto;
+            const preview = document.getElementById('discordPreview');
+            preview.style.display = 'none';
+            setTimeout(() => preview.style.display = 'block', 100);
+        }
+
+        window.onload = function() { 
+            setMode('drogas', document.querySelector('.cat-btn')); 
+            renderFeedbacks(); // Ativa os feedbacks automáticos
+        }
     </script>
 </body>
 </html>
