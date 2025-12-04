@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
     <style>
-        /* --- CONFIGURAÇÕES GERAIS (VISUAL RESTAURADO) --- */
+        /* --- CONFIGURAÇÕES GERAIS --- */
         :root { 
             --primary: #8a2be2; 
             --primary-glow: rgba(138, 43, 226, 0.4); 
@@ -40,10 +40,10 @@
         }
         .btn-cta:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--primary-glow); filter: brightness(1.2); }
 
-        /* CONTAINER DO VÍDEO (No lugar do GIF) */
-        .video-container {
+        /* VIDEO CONTAINER (Reutilizando estilo do GIF para manter o Banner) */
+        .gif-container {
             margin-top: 60px; border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
-            box-shadow: 0 20px 60px -10px var(--primary-glow); max-width: 800px; width: 100%; background: black;
+            box-shadow: 0 20px 60px -10px var(--primary-glow); max-width: 800px; width: 100%; background: #000;
         }
         video { width: 100%; display: block; }
 
@@ -57,17 +57,19 @@
         .feature-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
         .feature-card p { font-size: 0.95rem; line-height: 1.5; color: #ccc; margin: 0; }
 
-        /* DEPOIMENTOS (ATUALIZADO PARA SUPORTAR O SISTEMA NOVO) */
+        /* DEPOIMENTOS */
         .testimonials-section { padding: 80px 20px; text-align: center; background: #080808; }
-        .stats-bar { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 40px; color: #aaa; font-size: 0.9rem; }
-        .stars { color: #feca57; letter-spacing: 3px; }
         
+        /* Stats Bar para Média (Novo - Visual Minimalista) */
+        .stats-bar { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 40px; color: #777; font-size: 0.9rem; }
+        .stars-avg { color: #feca57; letter-spacing: 2px; }
+
         .testimonials-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px; }
         .testi-card {
             background: #151515; border-left: 4px solid var(--primary); padding: 25px; width: 100%; max-width: 320px; border-radius: 12px; text-align: left; transition: 0.3s;
         }
         .testi-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .testi-avatar { width: 45px; height: 45px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; overflow: hidden; color: white;}
+        .testi-avatar { width: 45px; height: 45px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; overflow: hidden; color:white; }
         .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .testi-name { font-weight: bold; color: white; font-size: 0.95rem; }
         .testi-role { font-size: 0.75rem; color: #777; }
@@ -206,7 +208,7 @@
         <p class="sub">Seja Muamba, Armas, Munição, Drogas ou Desmanche. Tenha um painel profissional que calcula lucros e envia relatórios automáticos no Discord.</p>
         <button class="btn-cta" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})"><i class="fa-solid fa-flask"></i> TESTAR O SISTEMA</button>
         
-        <div class="video-container reveal">
+        <div class="gif-container reveal">
             <video controls autoplay muted loop>
                 <source src="video.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
@@ -222,17 +224,17 @@
 
     <section class="testimonials-section reveal">
         <h2 style="font-size: 2.5rem; margin-bottom: 5px;">Quem usa, aprova</h2>
-        <p style="color:#666; font-size: 1.1rem; margin-bottom: 30px;">Líderes de diversas cidades já organizaram suas facções.</p>
+        <p style="color:#666; font-size: 1.2rem;">Líderes de diversas cidades já organizaram suas facções.</p>
         
         <div class="stats-bar">
-            <div><span class="stars" id="avgStars">★★★★★</span></div>
+            <div><span class="stars-avg" id="avgStars">★★★★★</span></div>
             <div><strong id="avgScore" style="color:white; font-size:1.1rem;">5.0</strong>/5</div>
             <div>•</div>
             <div id="totalReviews">Calculando...</div>
         </div>
 
         <div class="testimonials-grid" id="feedbacksContainer">
-        </div>
+            </div>
     </section>
 
     <section id="demo" class="demo-section">
@@ -411,7 +413,7 @@
 
         // === SISTEMA DE FEEDBACKS (MANUAL - DATABASE FICTÍCIA) ===
         // EDITE AQUI OS COMENTÁRIOS DA ABA FEEDBACK
-        // DICA: Coloque isTop: true para os que você quer que apareçam primeiro!
+        // O SITE VAI GERAR SOZINHO OS BANNERS DE FEEDBACK BASEADO NESTA LISTA
         const feedbackData = [
             { 
                 name: "Ramos", 
@@ -427,7 +429,7 @@
                 msg: "Tava com receio de ser difícil de mexer, mas é bem tranquilo. Salvou o caixa da semana.", 
                 avatar: "https://cdn.discordapp.com/avatars/1436748999444136038/38a0c23985392c00c00c00.png", 
                 stars: 5, 
-                isTop: false // <-- DESMARQUEI O DUTRA (false) PARA DAR LUGAR A OUTROS
+                isTop: true 
             },
             { 
                 name: "Mandrake_01", 
@@ -435,21 +437,13 @@
                 msg: "O suporte do Theus é diferencial, configurou rapidinho pra gente.", 
                 avatar: "🦁", 
                 stars: 5, 
-                isTop: true 
+                isTop: false // <-- SE QUISER QUE ALGUÉM SAIA, MUDE PARA false
             },
             { 
                 name: "Rebelde_RJ", 
                 role: "Dono Facção", 
                 msg: "Slk chave mano pa conteudo dahora, painelzão brabo.", 
                 avatar: "R", 
-                stars: 5, 
-                isTop: true 
-            },
-            { 
-                name: "Corleone", 
-                role: "Admin Cidade", 
-                msg: "Melhor sistema que já vi, sem bugs e entrega na hora.", 
-                avatar: "C", 
                 stars: 5, 
                 isTop: true 
             }
