@@ -381,15 +381,63 @@
         }, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // === PLAYER / COR / ETC ===
-        let isPlaying = false;
+        // === PLAYER PRO (AUTO-START INTELIGENTE) ===
         const audio = document.getElementById('bgMusic');
         const musicLabel = document.getElementById('musicLabel');
         const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        // Configura volume inicial bem baixo (15%)
+        audio.volume = 0.15; 
+
         function toggleMusic() {
-            if (isPlaying) { audio.pause(); musicLabel.innerText = "Tocar Música"; musicIcon.classList.remove('fa-pause'); musicIcon.classList.add('fa-music'); isPlaying = false; }
-            else { audio.volume = 0.3; audio.play(); musicLabel.innerText = "Pausar Música"; musicIcon.classList.remove('fa-music'); musicIcon.classList.add('fa-pause'); isPlaying = true; }
+            if (isPlaying) {
+                audio.pause();
+                musicLabel.innerText = "Tocar Música";
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-music');
+                isPlaying = false;
+            } else {
+                audio.play();
+                musicLabel.innerText = "Pausar Música";
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-pause');
+                isPlaying = true;
+            }
         }
+
+        // Tenta iniciar a música assim que carrega
+        window.addEventListener('load', () => {
+            const promise = audio.play();
+
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    // Autoplay funcionou!
+                    updatePlayerUI(true);
+                }).catch(error => {
+                    // Autoplay bloqueado pelo navegador.
+                    // Adiciona um gatilho no PRIMEIRO clique em qualquer lugar do site
+                    document.body.addEventListener('click', function startAudioOnFirstClick() {
+                        audio.play();
+                        updatePlayerUI(true);
+                        // Remove o gatilho para não rodar de novo
+                        document.body.removeEventListener('click', startAudioOnFirstClick);
+                    });
+                });
+            }
+        });
+
+        // Função auxiliar apenas para atualizar o botão visualmente
+        function updatePlayerUI(playing) {
+            if(playing) {
+                isPlaying = true;
+                musicLabel.innerText = "Pausar Música";
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-pause');
+            }
+        }
+
+        // === COR E CONFIGURAÇÕES ===
         function changeColor(color, btn) {
             document.documentElement.style.setProperty('--primary', color);
             document.documentElement.style.setProperty('--primary-glow', color + '66');
@@ -495,7 +543,3 @@
     </script>
 </body>
 </html>
-
-
-
-
